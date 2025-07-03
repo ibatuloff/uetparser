@@ -1,10 +1,10 @@
 import scrapy
 import re
 
-class ItemPropertySpider(scrapy.Spider):
+class ItemSpider(scrapy.Spider):
     name = "item_parser"
 
-    def __init__(self, urls=None, *args, **kwargs):
+    def __init__(self, urls, attributes, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.starting_urls = urls 
         self.target_attributes = attributes

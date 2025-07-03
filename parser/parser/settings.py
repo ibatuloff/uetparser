@@ -1,4 +1,4 @@
-# Scrapy settings for uetparser project
+# Scrapy settings for parser project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -7,16 +7,16 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = "uetparser"
+BOT_NAME = "parser"
 
-SPIDER_MODULES = ["uetparser.spiders"]
-NEWSPIDER_MODULE = "uetparser.spiders"
+SPIDER_MODULES = ["parser.spiders"]
+NEWSPIDER_MODULE = "parser.spiders"
 
 ADDONS = {}
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = "uetparser (+http://www.yourdomain.com)"
+#USER_AGENT = "parser (+http://www.yourdomain.com)"
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
@@ -41,13 +41,13 @@ DOWNLOAD_DELAY = 1
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    "uetparser.middlewares.UetparserSpiderMiddleware": 543,
+#    "parser.middlewares.parserSpiderMiddleware": 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    "uetparser.middlewares.UetparserDownloaderMiddleware": 543,
+#    "parser.middlewares.parserDownloaderMiddleware": 543,
 #}
 
 # Enable or disable extensions
@@ -59,7 +59,7 @@ DOWNLOAD_DELAY = 1
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 #ITEM_PIPELINES = {
-#    "uetparser.pipelines.UetparserPipeline": 300,
+#    "parser.pipelines.parserPipeline": 300,
 #}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
