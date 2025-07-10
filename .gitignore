@@ -1,0 +1,7 @@
+venv
+example.csv
+content
+__pycache__
+docs
+.env
+test.py

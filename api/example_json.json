@@ -1,0 +1,94 @@
+{
+  "$defs": {
+    "ProductAttributeEntry": {
+      "properties": {
+        "attribute": {
+          "anyOf": [
+            {"$ref": "#/$defs/ProductAttributeValid"},
+            {"$ref": "#/$defs/ProductAttributePredict"},
+            {"$ref": "#/$defs/ProductAttributeRaw"}
+          ],
+          "description": "Название аттрибута с аннотацией",
+          "title": "Attribute"
+        }{'$defs': {'ProductAttributeEntryAnnotated': {'properties': {'attribute': {'anyOf': [{'$ref': '#/$defs/ProductAttributeValid'}, {'$ref': '#/$defs/ProductAttributePredict'}, {'$ref': '#/$defs/ProductAttributeRaw'}], 'description': 'Название атрибута с аннотацией', 'title': 'Attribute'}, 'value': {'anyOf': [{'type': 'string'}, {'type': 'integer'}, {'type': 'number'}], 'description': 'Значение атрибута', 'title': 'Value'}}, 'required': ['attribute', 'value'], 'title': 'ProductAttributeEntryAnnotated', 'type': 'object'}, 'ProductAttributePredict': {'properties': {'value': {'description': 'Наиболее вероятное название атрибута', 'enum': ['voltage', 'power'], 'title': 'Value', 'type': 'string'}, 'status': {'const': 'predict', 'title': 'Status', 'type': 'string'}, 'explanation': {'description': 'Почему выбрано именно это значение атрибута', 'title': 'Explanation', 'type': 'string'}}, 'required': ['value', 'status', 'explanation'], 'title': 'ProductAttributePredict', 'type': 'object'}, 'ProductAttributeRaw': {'properties': {'value': {'description': 'Произвольное значение атрибута', 'title': 'Value', 'type': 'string'}, 'status': {'const': 'raw', 'title': 'Status', 'type': 'string'}, 'explanation': {'description': 'Почему сохранено исходное значение атрибута', 'title': 'Explanation', 'type': 'string'}}, 'required': ['value', 'status', 'explanation'], 'title': 'ProductAttributeRaw', 'type': 'object'}, 'ProductAttributeValid': {'properties': {'value': {'description': 'Корректное название атрибута', 'enum': ['voltage', 'power'], 'title': 'Value', 'type': 'string'}, 'status': {'const': 'valid', 'title': 'Status', 'type': 'string'}}, 'required': ['value', 'status'], 'title': 'ProductAttributeValid', 'type': 'object'}}, 'properties': {'entries': {'description': 'Список атрибутов продукта с аннотированными полями', 'items': {'$ref': '#/$defs/ProductAttributeEntryAnnotated'}, 'title': 'Entries', 'type': 'array'}}, 'required': ['entries'], 'title': 'ProductAttributeListAnnotated', 'type': 'object'}
+      },
+      "required": ["attribute"],
+      "title": "ProductAttributeEntry",
+      "type": "object"
+    },
+    "ProductAttributePredict": {
+      "properties": {
+        "value": {
+          "description": "Наиболее вероятное название аттрибута",
+          "enum": ["voltage", "power"],
+          "title": "Value",
+          "type": "string"
+        },
+        "status": {
+          "const": "predict",
+          "title": "Status",
+          "type": "string"
+        },
+        "explanation": {
+          "description": "Почему выбрано именно это значение аттрибута",
+          "title": "Explanation",
+          "type": "string"
+        }
+      },
+      "required": ["value", "status", "explanation"],
+      "title": "ProductAttributePredict",
+      "type": "object"
+    },
+    "ProductAttributeRaw": {
+      "properties": {
+        "value": {
+          "description": "Произвольное значение аттрибута",
+          "title": "Value",
+          "type": "string"
+        },
+        "status": {
+          "const": "raw",
+          "title": "Status",
+          "type": "string"
+        },
+        "explanation": {
+          "description": "Почему сохранено исходное значение аттрибута",
+          "title": "Explanation",
+          "type": "string"
+        }
+      },
+      "required": ["value", "status", "explanation"],
+      "title": "ProductAttributeRaw",
+      "type": "object"
+    },
+    "ProductAttributeValid": {
+      "properties": {
+        "value": {
+          "description": "Корректное название аттрибута",
+          "enum": ["voltage", "power"],
+          "title": "Value",
+          "type": "string"
+        },
+        "status": {
+          "const": "valid",
+          "title": "Status",
+          "type": "string"
+        }
+      },
+      "required": ["value", "status"],
+      "title": "ProductAttributeValid",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "entries": {
+      "description": "Список атрибутов продукта с аннотированными полями",
+      "items": {"$ref": "#/$defs/ProductAttributeEntry"},
+      "title": "Entries",
+      "type": "array"
+    }
+  },
+  "required": ["entries"],
+  "title": "ProductAttributeList",
+  "type": "object"
+}
