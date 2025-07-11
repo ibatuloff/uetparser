@@ -41,7 +41,6 @@ app = FastAPI(
 def get_proxy() -> str:
     return random.choice(PROXY_URLS)
 
-def 
 
 @app.post("/submit")
 def submit_csv(
@@ -77,9 +76,10 @@ def submit_csv(
     _, validation_model = create_pydantic_model(tuple(target_attributes))
     json_schema = validation_model.model_json_schema()
 
+    result = {}
     
     texts = []
-    for i, code in enumerate(item_codes):
+    for i, code in enumerate(item_codes[:2]):
         logger.info(f"processing code {code} supplier {supplier}")
         urls = get_urls(query=f"{supplier} {code}", proxy=random.choice(PROXY_URLS), n_res=2)
         logger.info(f"fetched {len(urls)} urls: {urls}")
@@ -90,8 +90,8 @@ def submit_csv(
             text = convert_to_markdown(html)
             if requires_js(text):
                 pass # TODO добавить fallback 
-            html_texts.append((html, url))
-            texts.append((text,url))
+            html_texts.append((html))
+            texts.append((text))
         # сохранить код страниц для дебага
         with open(f'content\output\index_{i}.html', 'w', encoding='utf-8') as html_file, open(f'content\output\markdown_{i}', 'w', encoding='utf-8') as md_file:
             for i, scraped_data in enumerate(zip(html_texts, texts)):
@@ -100,10 +100,10 @@ def submit_csv(
                 logger.info(f"saved ")
 
         merged_text = '\n\n\n\n\n'.join(texts)
-
+        openai_proxy = get_proxy()
         openai_client = openai.OpenAI(
             api_key=os.getenv('OPENAI_API_KEY'),
-            http_client=httpx.Client(proxy=get_proxy())
+            http_client=httpx.Client(proxy='http://'+openai_proxy)
         )
         resp = openai_client.chat.completions.parse(
             model=MODEL,
@@ -119,17 +119,20 @@ def submit_csv(
         with open(os.path.join(json_dir, f'response_{code}_merged_urls.json'), 'w', encoding='utf-8') as f:
             f.write(json.dumps(resp, indent=2, ensure_ascii=False))
 
-
-
-    return ...
+        result[code] = resp
 
 
 
-# TODO проверить что паук запускается
+    return result
+
+
+
+
     
 if __name__=="__main__":
-    print(get_proxy())
-    print(proxy_dict)
-    # uvicorn.run("main:app", host="0.0.0.0", port=8888, log_level="debug", reload=True)
+    # print(get_proxy())
+    # print(proxy_dict)
+    # print(PROXY_URLS)
+    uvicorn.run("main:app", host="0.0.0.0", port=8888, log_level="debug", reload=True)
 
 

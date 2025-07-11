@@ -60,7 +60,7 @@ def requires_js(text: str) -> bool:
         r"access[ -]?denied",       # Generic block
     ]
     
-    text_lower = html_text.lower()
+    text_lower = text.lower()
     return any(re.search(pattern, text_lower, re.IGNORECASE) for pattern in js_challenge_patterns)
 
 
