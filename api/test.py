@@ -301,11 +301,6 @@ def fetch_url(url: str, proxies: dict = None) -> str:
   text = res.text
   return text
 
-
-proxies = {
-  'http': PROXY
-}
-
 async def main():
   print(f"code {item_code} supplier {supplier}")
   os.makedirs('content\output', exist_ok=True)
@@ -325,7 +320,7 @@ async def main():
     texts.append(text)
     # if 
   openai_client = openai.OpenAI(
-    api_key=os.getenv('OPENAI_API_KEY')
+    api_key=os.getenv('OPENAI_API_KEY'),
     http_client=httpx.Client(proxy=PROXY)
   )
   resp = openai_client.chat.completions.parse(
@@ -343,8 +338,11 @@ async def main():
     f.write(json.dumps(resp, indent=2, ensure_ascii=False))
 
 
-asyncio.run(main())
-
+if __name__ == "__main__":
+  a = [1, 2,3 ]
+  b = [4,5,6]
+  for i, ab in enumerate(zip(a,b)):
+    print(i, ab[0], ab[1])
 
 
 
