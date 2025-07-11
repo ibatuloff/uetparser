@@ -27,31 +27,7 @@ INPUT_DIR = "./content/{jobid}/input"
 OUTPUT_DIR = "./content/{jobid}/output"
 PROJECT_ROOT = Path(__file__).parent.parent
 
-def run_scrapy(
-    item_codes, 
-    item_supplier,
-    jobid,
-    target_attributes,
-):
-    cmd = [
-        "scrapy",
-        "crawl",
-        "item_spider",
-        "-a",
-        f"item_codes={item_codes}",
-        "-a",
-        f"item_supplier={item_supplier}",
-        "-a",
-        f"jobid={jobid}",
-        "-a",
-        f"target_attributes={target_attributes}",
-    ]
 
-
-    process = subprocess.run(
-        cmd,
-        cwd=str(PROJECT_ROOT),
-    )
 
 app = FastAPI(
     title="Data enrichment api",

@@ -22,7 +22,7 @@ import asyncio
 path = glob.glob("content\input\*.csv")
 df = pd.read_csv(path[0])
 
-PROXY = ""
+PROXY = os.getenv('PROXY_URL')
 MODEL = "gpt-4.1-mini"
 
 threshold = 80
@@ -111,14 +111,14 @@ OUTPUT:
       },
       "value": 25
     },
-	{
+  {
       "attribute": {
         "value": "Защита от перегрева",
         "status": "raw",
       },
       "value": "Да"
     },
-    	{
+      {
       "attribute": {
         "value": "Защита от работы без воды",
         "status": "raw",
@@ -148,7 +148,7 @@ Now for this example lets consider the reference list to be ['Напряжени
 INPUT:
 <<<
 [![Ozon](https://ir-8.ozone.ru/s3/cms/d2/t26/wc200/logo_ozon_1.png)](/) Каталог
- Везде
+Везде
         16а10а25а32а6а ![](https://ir-8.ozone.ru/s3/ozon-graphics/ds_image_default_image_1698747459974.png)      Войти   [Заказы](/my/orderlist/) [Избранное](/my/favorites)[Корзина](/cart)* [Ozon Карта](https://finance.ozon.ru/)
 * [Билеты, отели](https://www.ozon.ru/travel/?mwc_campaign=oztravel_horizontal-menu_flight)
 * Для бизнеса
@@ -157,18 +157,18 @@ INPUT:
 * [Дом и сад](/category/dom-i-sad-14500/)
 * [Товары за 1₽](https://www.ozon.ru/highlight/ozon-bank-1332387/)
 * [Сертификаты](https://www.ozon.ru/landing/giftcertificates/?perehod=headerdesk)
-   Екатеринбург  •  Укажите адрес
+  Екатеринбург  •  Укажите адрес
 
 Этот товар закончился
 ---------------------
 
- ![](https://ir-8.ozone.ru/s3/multimedia-1-x/c200/7475829873.jpg)2 061 ₽Автоматический выключатель EKF / ЕКФ PROxima ВА 47\-100, 1P 125А характеристика C, 10кА, mcb47100\-1\-125C\-pro / электроавтомат
+![](https://ir-8.ozone.ru/s3/multimedia-1-x/c200/7475829873.jpg)2 061 ₽Автоматический выключатель EKF / ЕКФ PROxima ВА 47\-100, 1P 125А характеристика C, 10кА, mcb47100\-1\-125C\-pro / электроавтомат
 
 Доставка недоступна
 
 Продавец[Т\-Электрик](/seller/884098/)
 
- "[Стать продавцом на Ozon](https://seller.ozon.ru/?utm_source=ozon&utm_medium=link_out_of_stock&utm_campaign=to_be_seller)" Другой продавец
+"[Стать продавцом на Ozon](https://seller.ozon.ru/?utm_source=ozon&utm_medium=link_out_of_stock&utm_campaign=to_be_seller)" Другой продавец
 
 ![](https://ir-8.ozone.ru/s3/multimedia-1-p/c200/7458995869.jpg)1 375 ₽1 833 ₽Автомат 125А, тип C, однополюсный 1P, 10kA, cо встроенной опломбировкой клемм EKF PROxima ВА 47\-100 
 (Автоматический выключатель C125\)
@@ -178,28 +178,28 @@ INPUT:
 Продавец[EKF](/seller/41330/)
 
 В корзину
- Похожие товары
+Похожие товары
 
 
-       [![Автомат 125А, тип C, однополюсный 1P, 10kA, cо встроенной опломбировкой клемм EKF PROxima ВА 47-100 (Автоматический выключатель C125)](https://ir-8.ozone.ru/s3/multimedia-1-p/wc250/7458995869.jpg)](/product/avtomat-125a-tip-c-odnopolyusnyy-1p-10ka-co-vstroennoy-oplombirovkoy-klemm-ekf-proxima-va-47-217733262/)  1 375 ₽1 833 ₽−24%[Автомат 125А, тип C, однополюсный 1P, 10kA, cо встроенной опломбировкой клемм EKF PROxima ВА 47\-100 (Автоматический выключатель C125\)](/product/avtomat-125a-tip-c-odnopolyusnyy-1p-10ka-co-vstroennoy-oplombirovkoy-klemm-ekf-proxima-va-47-217733262/)4\.981 отзыв 15 июля      Категория[Строительство и ремонт](/category/stroitelstvo-i-remont-9700/?deny_category_prediction=true&from_global=true&text=%D0%90%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B9+%D0%B2%D1%8B%D0%BA%D0%BB%D1%8E%D1%87%D0%B0%D1%82%D0%B5%D0%BB%D1%8C)[Электрика](/category/elektrika-9826/?deny_category_prediction=true&from_global=true&text=%D0%90%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B9+%D0%B2%D1%8B%D0%BA%D0%BB%D1%8E%D1%87%D0%B0%D1%82%D0%B5%D0%BB%D1%8C) Распродажа Сроки доставки    Неважно От 1 часа Сегодня Завтра До 3 дней До 7 дней Цена
- от
+      [![Автомат 125А, тип C, однополюсный 1P, 10kA, cо встроенной опломбировкой клемм EKF PROxima ВА 47-100 (Автоматический выключатель C125)](https://ir-8.ozone.ru/s3/multimedia-1-p/wc250/7458995869.jpg)](/product/avtomat-125a-tip-c-odnopolyusnyy-1p-10ka-co-vstroennoy-oplombirovkoy-klemm-ekf-proxima-va-47-217733262/)  1 375 ₽1 833 ₽−24%[Автомат 125А, тип C, однополюсный 1P, 10kA, cо встроенной опломбировкой клемм EKF PROxima ВА 47\-100 (Автоматический выключатель C125\)](/product/avtomat-125a-tip-c-odnopolyusnyy-1p-10ka-co-vstroennoy-oplombirovkoy-klemm-ekf-proxima-va-47-217733262/)4\.981 отзыв 15 июля      Категория[Строительство и ремонт](/category/stroitelstvo-i-remont-9700/?deny_category_prediction=true&from_global=true&text=%D0%90%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B9+%D0%B2%D1%8B%D0%BA%D0%BB%D1%8E%D1%87%D0%B0%D1%82%D0%B5%D0%BB%D1%8C)[Электрика](/category/elektrika-9826/?deny_category_prediction=true&from_global=true&text=%D0%90%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B9+%D0%B2%D1%8B%D0%BA%D0%BB%D1%8E%D1%87%D0%B0%D1%82%D0%B5%D0%BB%D1%8C) Распродажа Сроки доставки    Неважно От 1 часа Сегодня Завтра До 3 дней До 7 дней Цена
+от
 
 
 
- до
+до
 
 
       до 750 ₽ 750–2 000 ₽ 2 000–7 500 ₽ 7 500 ₽ и дороже Неважно Бренд   ![](https://cdn1.ozonusercontent.com/s3/product-service-meta-media/wc50/c7ccd542-9297-45b3-a1b8-156e5fe81b3a.jpg) ABB![](https://cdn1.ozonusercontent.com/s3/product-service-meta-media/wc50/5c5d5d92-330a-43e3-9b89-41a3869a9836.jpg) IEK![](https://cdn1.ozonusercontent.com/s3/product-service-meta-media/wc50/017425ee-f073-487f-91d4-30d43fa38f5c.jpg) EKF![](https://cdn1.ozonusercontent.com/s3/product-service-meta-media/wc50/df9bf925-bb26-4ad2-abf0-812bd69b942e.jpg) Schneider Electric![](https://cdn1.ozonusercontent.com/s3/product-service-meta-media/wc50/e1377256-b8d0-410d-8c8e-7b7291039824.jpg) DEKraft![](https://cdn1.ozonusercontent.com/s3/product-service-meta-media/wc50/4a4651fe-934a-4654-b6fa-5e54355bec6a.jpg) Legrand![](https://cdn1.ozonusercontent.com/s3/product-service-meta-media/wc50/b7f807cb-f609-4f2d-a86b-cc25756d0f85.jpg) CHINT Посмотреть все Оригинальный товар  Официальные магазины бренда Количество полюсов     1   2   3   4   5  Посмотреть всеТип расцепления     A   AC   B   C  
- D  Посмотреть всеНоминальная отключающая способность, кA
- от
+D  Посмотреть всеНоминальная отключающая способность, кA
+от
 
 
 
- до
+до
 
 
-   Количество клавиш     1   3   2   4   12  Посмотреть всеТип     Автоматический выключатель   Автомат защиты двигателя   Аксессуар для автомата   Расцепитель   Ограничитель перенапряжения  Посмотреть всеСтрана\-изготовитель     Китай   Россия   Германия   Южная Корея   Индия  Посмотреть всеНоминальное напряжение, В
- от
+  Количество клавиш     1   3   2   4   12  Посмотреть всеТип     Автоматический выключатель   Автомат защиты двигателя   Аксессуар для автомата   Расцепитель   Ограничитель перенапряжения  Посмотреть всеСтрана\-изготовитель     Китай   Россия   Германия   Южная Корея   Индия  Посмотреть всеНоминальное напряжение, В
+от
 >>>
 
 OUTPUT:
@@ -309,38 +309,44 @@ proxies = {
 async def main():
   print(f"code {item_code} supplier {supplier}")
   os.makedirs('content\output', exist_ok=True)
-  urls = get_urls(query=f"{supplier} {item_code}", proxy=PROXY)
+  urls = get_urls(query=f"{supplier} {item_code}", proxy=PROXY, n_res=5)
+  print(urls)
+  texts = []
   for i, url in enumerate(urls):
     # ru_http_client = await get_client()
     # proxy_http_client = await get_client()
     html_text = fetch_url(url, proxies=proxies)
-    with open(f'content\output\index{i}.html', 'w', encoding='utf-8') as f:
-      f.write(html_text)
     text = convert_to_markdown(html_text)
+    with open(f'content\output\index_{i}.html', 'w', encoding='utf-8') as f, open(f'content\output\markdown_{i}', 'w', encoding='utf-8') as f1:
+      f.write(html_text)
+      f1.write(text)
+    
+
+    texts.append(text)
     # if 
-    openai_client = openai.OpenAI(
-      api_key="",
-      http_client=httpx.Client(proxy=PROXY)
-    )
-    resp = openai_client.chat.completions.parse(
-      model=MODEL,
-      messages=[
-          {'role': 'system', 'content': system_prompt.format(json_schema=json_schema, examples=examples, md=text)},
-      ],
-      response_format=validation_model
-    )
-    resp = resp.choices[0].message.content
+  openai_client = openai.OpenAI(
+    api_key=os.getenv('OPENAI_API_KEY')
+    http_client=httpx.Client(proxy=PROXY)
+  )
+  resp = openai_client.chat.completions.parse(
+    model=MODEL,
+    messages=[
+        {'role': 'system', 'content': system_prompt.format(json_schema=json_schema, examples=examples, md='\n\n\n\n\n'.join(texts))},
+    ],
+    response_format=validation_model
+  )
+  resp = resp.choices[0].message.content
 
-    json_dir = 'content/output/responses'
-    os.makedirs(json_dir, exist_ok=True)
-    with open(os.path.join(json_dir, f'response{item_code}{i}.json'), 'w', encoding='utf-8') as f:
-      f.write(json.dumps(resp, indent=2, ensure_ascii=False))
+  json_dir = 'content/output/responses'
+  os.makedirs(json_dir, exist_ok=True)
+  with open(os.path.join(json_dir, f'response{item_code}merged5urls.json'), 'w', encoding='utf-8') as f:
+    f.write(json.dumps(resp, indent=2, ensure_ascii=False))
 
 
-# asyncio.run(main())
+asyncio.run(main())
 
-if __name__ == "__main__":
-  with open('content\output\index1.html', 'r') as f:
 
-    html = f.read()
-    print(requires_js_fallback(html))
+
+
+
+

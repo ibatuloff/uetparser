@@ -4,3 +4,4 @@ content
 __pycache__
 docs
 .env
+test_.py
