@@ -4,10 +4,10 @@ from typing import Any
 import tiktoken
 
 
-def get_urls(query: str, n_res: int, lang: str) -> list[str]:
+def get_urls(query: str, n_res: int = 2, lang: str = 'ru', proxy: str = None) -> list[str]:
     region = {'ru': 'RU',
               'en': 'US'}
-    urls = [url for url in search(term=query, num_results=n_res, lang=lang, region=region[lang])]
+    urls = [url for url in search(term=query, num_results=n_res, lang=lang, region=region[lang], proxy=proxy)]
     return urls
 
 def infer_column_type(series: pd.Series, col) -> type:

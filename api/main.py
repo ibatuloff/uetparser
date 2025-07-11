@@ -99,7 +99,7 @@ def submit_csv(
     item_supplier = df.loc[df['Код товара'].notna(), 'Производитель'].values[0]
 
 
-    for code in item_codes:
+    for code in item_codes[:1]:
         urls = get_urls(
             f"{item_supplier} {code}",
             n_res=4,
@@ -110,11 +110,14 @@ def submit_csv(
                 "spider_name": "item_spider",
                 "url": url
             }
+
             response = requests.get(
-                "http://localhost:9080/crawl.json",
-                **params
+                url="http://localhost:9080/crawl.json",
+                params=params,
+                timeout=30
             )
-            print(response)
+            jobid = response
+
 
 
 
