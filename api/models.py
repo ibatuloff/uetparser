@@ -1,8 +1,9 @@
 from pydantic import BaseModel, Field
 from typing import List, Tuple, Literal, Optional, Union, Any
+from enum import Enum
+import uuid
 
-
-def create_pydantic_model(target_cols: Tuple[str]) -> type[BaseModel]:
+def create_extract_attr_model(target_cols: Tuple[str]) -> type[BaseModel]:
     class ProductAttributeValid(BaseModel):
         value: Literal[target_cols] = Field(..., description="Корректное название атрибута")
         status: Literal['valid']
@@ -28,4 +29,29 @@ def create_pydantic_model(target_cols: Tuple[str]) -> type[BaseModel]:
             [], description="Список атрибутов продукта с аннотированными полями"
         )
 
-    return ProductAttributeEntryAnnotated, ProductAttributeListAnnotated
+    return ProductAttributeListAnnotated
+
+class ProductCharacteristicsSection(BaseModel):
+    section: str = Field(..., description="Секция характеристик продукта")
+    explanation: str = Field(..., description="Почему считаешь этот отрезок текста секией характеристик")
+
+class ProductCharacteristicsSectionList(BaseModel):
+    sections: List[ProductCharacteristicsSection] = Field([], description="Список секций характеристик продукта, найденный на странице продукта")
+    
+
+class ProductAttributeEntry(BaseModel):
+    attribute: str = Field(..., description="Название атрибута")
+    value: Union[str, int, float] = Field(..., description="Значение атрибута")
+    status: str
+    explanation: str
+
+class ProductAttributeList(BaseModel):
+    entries: List[ProductAttributeEntry] = Field(
+        [], description="Список атрибутов продукта"
+    ) 
+
+
+class JobResponse(BaseModel):
+    status: str
+    id: uuid.UUID
+    message: Optional[str] = Field(None)

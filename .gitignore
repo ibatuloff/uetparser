@@ -1,7 +1,5 @@
-venv
-example.csv
 content
 __pycache__
 docs
 .env
-test_.py
+pgdata

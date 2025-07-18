@@ -1,13 +1,26 @@
-import googlesearch
 import pandas as pd
 from typing import Any
 import tiktoken
 import re
 from curl_cffi import requests
+import redis
+
+# ----------- REDIS --------------------
+
+PROXY_POOL = "proxy_pool"
+BLACKLISTED_PROXIES = "blacklisted_proxies"
+redis = redis.Redis
+def init_proxy_pool(proxies):
+    for proxy in proxies:
+        redis.lpush(PROXY_POOL, proxy)
+
+def acquire_proxy():
+    proxy = redis.brpop(PROXY_POOL)
+    
+    
 
 
 def get_urls(query: str, n_res: int = 2, lang: str = 'ru', proxy: str = None) -> list[str]:
-    # ua = googlesearch.get_useragent()
     region = {'ru': 'RU',
               'en': 'US'}
     urls = [url for url in googlesearch.search(term=query, num_results=n_res, lang=lang, region=region[lang], proxy=proxy)]
